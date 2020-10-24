@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-
 from threading import Thread
 
 GPIO.setmode(GPIO.BCM)
@@ -12,7 +11,8 @@ led = {16:False, 20:False, 21:False}
 for i in led.keys():
     GPIO.setup(i,GPIO.OUT)
 
-def blink(x):    
+# Blink
+def blink(x):
     while x==True:
         for key, val in led.items():
             if val == True:
@@ -26,6 +26,7 @@ def blink(x):
             
         time.sleep(0.2)
 
+# Moderation
 def pwm(m):
     for key in led.keys():
         GPIO.output(key,False)
@@ -92,9 +93,8 @@ try:
             t2 = Thread(target=blink, args=(not x))
             t2.daemon = True
             t2.start()
-            
         
-            
+# OFF
 except KeyboardInterrupt:
     GPIO.cleanup()
 finally:
