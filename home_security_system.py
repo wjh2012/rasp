@@ -38,7 +38,7 @@ try:
                 if GPIO.input(12)==False:
                     GPIO.output(16, False)
                     control = False
-                    break                
+                    break             
                 time.sleep(0.3)                
         time.sleep(0.3)
         

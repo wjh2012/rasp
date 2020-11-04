@@ -6,6 +6,10 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(25,GPIO.IN)
 GPIO.setup(25,GPIO.OUT)
+
+GPIO.setup(24,GPIO.IN) #PIR
+
+GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP) #btn
 #LED dictionary
 led = {16:False, 20:False, 21:False}
 
@@ -125,14 +129,29 @@ try:
             t2.start()
             
         elif k == 's':
-            while True:
-                try:                
-                    buzz()
-                    time.sleep(0.5)
-                except KeyboardInterrupt:
-                    GPIO.output(25, False)
-                    break
+            for i in range(5):
+                buzz()
+                time.sleep(0.5)
         
+        elif k == 'p':
+            while(True):
+                if GPIO.input(24)==True:
+                    print("SENSOR ON!!")            
+                    GPIO.output(16, True)
+                    time.sleep(3)
+                    GPIO.output(16, False)
+                    
+                time.sleep(0.5)
+        
+        elif k == 'o':
+            while(True):
+                if GPIO.input(12)==True:
+                    for i in range(5):
+                        buzz()
+                        time.sleep(0.5)
+                time.sleep(0.5)
+                
+                print('button pressed')
 # OFF
 except KeyboardInterrupt:
     GPIO.cleanup()
