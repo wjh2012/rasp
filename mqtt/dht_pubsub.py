@@ -12,10 +12,10 @@ dht_type =11
 dht_pin = 23
 
 # Define Variables
-MQTT_HOST = " 192.9.44.252“ #자신의 pc ip
+MQTT_HOST = "192.9.44.252" #자신의 pc ip
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 60
-MQTT_TOPIC = "dht/CCL“
+MQTT_TOPIC = "dht/CCL"
 
 # Define on_publish event function
 def on_publish(client, userdata, mid):
@@ -25,7 +25,7 @@ def on_connect ( client, userdata , flags, rc ):
     client.subscribe("dht/CCL")
 
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload.decode('utf-8’)))
+    print(msg.topic+" "+str(msg.payload.decode('utf-8')))
     if msg.payload.decode(‘utf-8’) == "on":
         GPIO.output(16, True)
     elif msg.payload.decode(‘utf-8’) == "off":
@@ -49,9 +49,9 @@ try:
         if humidity is not None and temperature is not None:
             data = {'temperature':round(temperature, 1), 'humidity' : round(humidity, 1)}
             client.publish(MQTT_TOPIC, str(data))
-            print('Published. Sleeping ...’)
+            print('Published. Sleeping ...')
         else:
-            print('Failed to get reading. Skipping ...’)
+            print('Failed to get reading. Skipping ...')
 
 except keyboardInterrupt:
     GPIO.cleanup()
