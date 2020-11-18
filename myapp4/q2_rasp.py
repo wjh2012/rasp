@@ -31,7 +31,7 @@ GPIO.setup(26,GPIO.OUT) #B
 GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Define Variables
-MQTT_HOST = "192.168.35.113" #자신의 pc ip
+MQTT_HOST = "test.mosquitto.org" #자신의 pc ip
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 60
 MQTT_TOPIC = "/CCL/IoTP-UP"
