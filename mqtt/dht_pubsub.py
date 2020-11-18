@@ -26,9 +26,9 @@ def on_connect ( client, userdata , flags, rc ):
 
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload.decode('utf-8')))
-    if msg.payload.decode(‘utf-8’) == "on":
+    if msg.payload.decode('utf-8') == "on":
         GPIO.output(16, True)
-    elif msg.payload.decode(‘utf-8’) == "off":
+    elif msg.payload.decode('utf-8') == "off":
         GPIO.output(16, False)
 
 # Initiate MQTT Client

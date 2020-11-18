@@ -13,6 +13,9 @@ dht_type = 11
 bcm_pin = 23
 # LCD 설정
 lcd = CharLCD('PCF8574', 0x27)
+# 버튼
+GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 # 세팅
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -33,7 +36,7 @@ def on_connect ( client, userdata , flags, rc ):
 
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload.decode('utf-8')))
-    if msg.payload.decode(‘utf-8’) == "on-201636008":
+    if msg.payload.decode('utf-8') == "on-201636008":
         print("good!")
 
 # Initiate MQTT Client
