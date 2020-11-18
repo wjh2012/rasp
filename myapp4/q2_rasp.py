@@ -104,7 +104,7 @@ try:
         lcd.write_string('Won JangHo')
 
         if GPIO.input(12)==False:
-            data = {'time':nowTime, 'info' : "201636008WJH"}
+            data = {'time' : now.strftime('%H:%M:%S'), 'info' : "201636008WJH"}
             client.publish(MQTT_TOPIC, str(data))
             print('Published. Sleeping ...')
         else:
