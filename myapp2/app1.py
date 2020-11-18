@@ -58,7 +58,6 @@ try:
         GPIO.output(21,False)
         GPIO.output(25,False)
         GPIO.output(26,False)
-        
         # 시간
         now = datetime.datetime.now()
         nowDate = now.strftime('%Y-%m-%d')

@@ -24,6 +24,8 @@ GPIO.setup(26,GPIO.OUT) #B
 # 버튼
 GPIO.setup(12,GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+control=False
+
 try:
     while True:
         # 온도
@@ -40,7 +42,17 @@ try:
         lcd.cursor_pos = (1,3)
         lcd.write_string('Won JangHo')
 
-        if GPIO.input(12) == False:
+        button_state=GPIO.input(12)
+        if button_state == False:
+            
+            if(control == True):
+                control = False
+            else:
+                control= True
+                
+            print('button pressed')
+        
+        if control == True:
             GPIO.output(16,True)
             GPIO.output(20,True)
             GPIO.output(21,True)
@@ -49,7 +61,6 @@ try:
             GPIO.output(19,True)
             GPIO.output(26,True)
 
-            time.sleep(0.5)
         else:
             GPIO.output(16,False)
             GPIO.output(20,False)
@@ -58,13 +69,8 @@ try:
             GPIO.output(13,False)
             GPIO.output(19,False)
             GPIO.output(26,False)
-
-            
-
-
-
-
         
+        time.sleep(0.2))
 
 except KeyboardInterrupt:
     GPIO.cleanup()
