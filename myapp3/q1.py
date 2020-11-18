@@ -40,7 +40,7 @@ try:
         lcd.cursor_pos = (1,3)
         lcd.write_string('Won JangHo')
 
-        if GPIO.input(24) == True:
+        if GPIO.input(12) == False:
             GPIO.output(16,True)
             GPIO.output(20,True)
             GPIO.output(21,True)
